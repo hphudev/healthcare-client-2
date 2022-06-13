@@ -1,11 +1,11 @@
 export function showLoading(title, text, timer = 147698) {
   Swal.fire({
     toast: true,
-    title: "Bảo mật",
+    title: title,
     background: '#000000',
     color: "#ffffff",
     width: "200px",
-    text: "Đang kiểm tra tài khoản",
+    text: text,
     timer: timer,
     showConfirmButton: false
   });
@@ -52,5 +52,27 @@ export function showError(title, text) {
     icon: 'error',
     title: title,
     text: text
+  })
+}
+
+export function showInputText(title, inputLabel, inputPlaceholder, callback) {
+  Swal.fire({
+    title: title,
+    inputLabel: inputLabel,
+    inputPlaceholder: inputPlaceholder,
+    input: 'text',
+    padding: '18px',
+    showCancelButton: true,
+    allowOutsideClick: false,
+    confirmButtonText: 'Send',
+    inputValidator: (value) => {
+      if (!value) {
+        return 'You need to fill information!'
+      }
+    }
+  }).then((response) => {
+    console.log(response);
+    if (response.isConfirmed)
+      callback(response.value);
   })
 }
