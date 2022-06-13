@@ -1,5 +1,5 @@
 
-var serveName = ' https://ae6c-14-169-11-68.ap.ngrok.io';
+var serveName = 'https://1233-14-169-11-68.ap.ngrok.io';
 var hostName = serveName + '/public/api';
 // var hostName = 'https://localhost' + '/public/api';
 // var hostImage = 'https://localhost' + '/public/upload/'
