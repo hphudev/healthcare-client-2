@@ -31,7 +31,25 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	<script type="text/javascript" src="js/memenu.js"></script>
 	<script>$(document).ready(function () { $(".memenu").memenu(); });</script>
 	<script src="js/simpleCart.min.js"> </script>
-	<script src="js/host.js"></script>
+	<!-- ------------------------------------------------------------------------------------------------------------------------ -->
+	<!-- style -->
+	<link rel="stylesheet" href="css/sweet.css">
+	<!-- Sweet alert -->
+	<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+	<!-- Smtp mail -->
+	<script src="https://smtpjs.com/v3/smtp.js"></script>
+	<!-- Emailjs -->
+	<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js">
+	</script>
+	<script type="text/javascript">
+		(function () {
+			emailjs.init("RSCdeC4Yc0Qplr7Mf");
+		})();
+	</script>
+	<!-- Axios -->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.0.0-alpha.1/axios.min.js"
+		integrity="sha512-xIPqqrfvUAc/Cspuj7Bq0UtHNo/5qkdyngx6Vwt+tmbvTLDszzXM0G6c91LXmGrRx8KEPulT+AfOOez+TeVylg=="
+		crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 </head>
 
 <body>
@@ -52,7 +70,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
 					<div class="search-box">
 						<div id="sb-search" class="sb-search">
-							<form action="#" method="post">
+							<form action="#" method="post" id="form-search">
 								<input class="sb-search-input" placeholder="Enter your search term..." type="search" id="search">
 								<input class="sb-search-submit" type="submit" value="">
 								<span class="sb-icon-search"> </span>
@@ -225,6 +243,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		<div class="container">
 			<div class="col-md-9 product1">
 				<div class="bottom-product">
+					<h2>No results.</h2>
 					<!-- <div class="col-md-6 bottom-cd simpleCart_shelfItem">
 						<div class="product-at ">
 							<a href="single.html"><img class="img-responsive" src="images/pi3.jpg" alt="">
@@ -398,57 +417,6 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 </body>
 <script async>
 </script>
-<script lang="text/javascript">
-	async function loadProducts() {
-		const queryString = window.location.search;
-		console.log(queryString);
-		const urlParams = new URLSearchParams(queryString);
-		let drug_group_id = urlParams.get('id');
-		console.log(drug_group_id);
-		let host = hostName + ((drug_group_id == null) ? '/drugs/get-all-drugs' : '/drugs/get-drugs-with-drug-groups');
-		console.log(host);
-		$.ajax({
-			type: "post",
-			url: host,
-			data: {
-				id: drug_group_id
-			},
-			success: await function (data) {
-				console.log(data);
-				let html = "";
-				data.forEach(element => {
-					html +=
-						'<div class="col-md-6 bottom-cd simpleCart_shelfItem">\
-							<div class="product-at ">\
-								<a href="single.html"><img class="img-responsive" style="height: 348.5px; object-fit: cover;" src="' + hostImage + element.HinhAnh + '" alt="">\
-									<div class="pro-grid">\
-										<span class="buy-in" style="background-color: black; text-transform: none">More info</span>\
-									</div>\
-								</a>\
-							</div>\
-							<p class="tun"><span>' + element.TenThuoc + '</span><br>' + element.TenNhomThuoc + '</p>\
-							<div class="ca-rt">\
-								<a href="" class="item_add" onclick="event.preventDefault();">\
-									<p class="number item_price"><i> </i>' + toVND(element.GiaBan) +'</p>\
-								</a>\
-							</div>\
-							<div class="clearfix"></div>\
-						</div>';
-				});
-				$('.bottom-product').html(html);
-			}
-		});
-
-	}
-
-	$(document).ready(function () {
-
-		setInterval(async () => {
-			loadProducts();
-		}, 5000);
-		loadProducts();
-
-	});
-</script>
+<script type="module" src="js/product_page/product.js"></script>
 
 </html>

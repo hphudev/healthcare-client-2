@@ -4,7 +4,7 @@ export function showLoading(title, text, timer = 147698) {
     title: title,
     background: '#000000',
     color: "#ffffff",
-    width: "200px",
+    width: "300px",
     text: text,
     timer: timer,
     showConfirmButton: false
@@ -75,4 +75,7 @@ export function showInputText(title, inputLabel, inputPlaceholder, callback) {
     if (response.isConfirmed)
       callback(response.value);
   })
+}
+export function closeSwal() {
+  Swal.close();
 }

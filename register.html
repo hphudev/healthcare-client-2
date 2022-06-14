@@ -33,6 +33,22 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	<script src="js/simpleCart.min.js"> </script>
 	<!-- --------------------------------------------------------------------------------------------------------------- -->
 	<link rel="stylesheet" href="css/input.css">
+	<!-- Sweet alert -->
+	<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+	<!-- Smtp mail -->
+	<script src="https://smtpjs.com/v3/smtp.js"></script>
+	<!-- Emailjs -->
+	<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js">
+	</script>
+	<script type="text/javascript">
+		(function () {
+			emailjs.init("RSCdeC4Yc0Qplr7Mf");
+		})();
+	</script>
+	<!-- Axios -->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.0.0-alpha.1/axios.min.js"
+		integrity="sha512-xIPqqrfvUAc/Cspuj7Bq0UtHNo/5qkdyngx6Vwt+tmbvTLDszzXM0G6c91LXmGrRx8KEPulT+AfOOez+TeVylg=="
+		crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 	<style>
 
 	</style>
@@ -231,20 +247,20 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	<!--content-->
 	<div class=" container">
 		<div class=" register">
-			<form action="#" method="post">
+			<form action="#" method="post" id="form-register">
 				<div class="col-md-6 register-top-grid">
 					<h3>Personal infomation</h3>
 					<div>
 						<span>First Name</span>
-						<input type="text">
+						<input id="input-first-name" type="text" required>
 					</div>
 					<div>
 						<span>Last Name</span>
-						<input type="text">
+						<input id="input-last-name" type="text" required>
 					</div>
 					<div>
 						<span>Email Address</span>
-						<input type="text">
+						<input id="input-email" type="text" required>
 					</div>
 				</div>
 				<!-- <a class="news-letter" href="#">
@@ -256,24 +272,24 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 						<div>
 							<span>Province</span>
 							<select id="select-province">
-								<option value="0">---</option>
+								<option value="---">---</option>
 							</select>
 						</div>
 						<div>
 							<span>District</span>
 							<select id="select-district">
-								<option value="0">---</option>
+								<option value="---">---</option>
 							</select>
 						</div>
 						<div>
-							<span>Award</span>
-							<select id="select-award">
-								<option value="0">---</option>
+							<span>Ward</span>
+							<select id="select-ward">
+								<option value="---">---</option>
 							</select>
 						</div>
 						<div>
 							<span>Detail address</span>
-							<input type="text">
+							<input id="input-detail-address" type="text" required>
 						</div>
 					</div>
 				</div>
@@ -282,15 +298,14 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 						<h3>Login information</h3>
 						<div style="width: 500px;">
 							<span>Password</span>
-							<input type="password">
+							<input id="input-password" type="password" required>
 						</div>
 						<div style="max-width: 500px;">
 							<span>Confirm Password</span>
-							<input type="password">
+							<input id="input-confirm-password" type="password" required>
 						</div>
 						<input style="max-width: 500px;" type="submit" value="submit">
 					</div>
-
 				</div>
 				<div class="clearfix"> </div>
 			</form>

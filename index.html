@@ -31,7 +31,23 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	<script type="text/javascript" src="js/memenu.js"></script>
 	<script>$(document).ready(function () { $(".memenu").memenu(); });</script>
 	<script src="js/simpleCart.min.js"> </script>
-	<script src="js/host.js"></script>
+	<!-- --------------------------------------------------------------------------------------------------------------------------------------- -->
+	<!-- Sweet alert -->
+	<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+	<!-- Smtp mail -->
+	<script src="https://smtpjs.com/v3/smtp.js"></script>
+	<!-- Emailjs -->
+	<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js">
+	</script>
+	<script type="text/javascript">
+		(function () {
+			emailjs.init("RSCdeC4Yc0Qplr7Mf");
+		})();
+	</script>
+	<!-- Axios -->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.0.0-alpha.1/axios.min.js"
+		integrity="sha512-xIPqqrfvUAc/Cspuj7Bq0UtHNo/5qkdyngx6Vwt+tmbvTLDszzXM0G6c91LXmGrRx8KEPulT+AfOOez+TeVylg=="
+		crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 </head>
 
 <body>
@@ -52,7 +68,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
 					<div class="search-box">
 						<div id="sb-search" class="sb-search">
-							<form action="#" method="post">
+							<form action="#" method="post" id="form-search">
 								<input class="sb-search-input" placeholder="Enter your search term..." type="search" id="search">
 								<input class="sb-search-submit" type="submit" value="">
 								<span class="sb-icon-search"> </span>
@@ -74,7 +90,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 								<h3>
 									<div class="total">
 										<span class="simpleCart_total"></span>
-									</div>
+									</div >
 									<img src="images/cart.png" alt="" />
 								</h3>
 							</a>
@@ -102,7 +118,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 										<div class="h_nav">
 											<ul>
 												<li><a href="products.html">All</a></li>
-												<li><a href="products.html">Diuretic</a></li>
+												<li><a href="products.html?trait=diuretic">Diuretic</a></li>
 
 											</ul>
 										</div>
@@ -110,7 +126,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 									<div class="col1">
 										<div class="h_nav">
 											<ul>
-												<li><a href="products.html">Calcium channel blocker group</a></li>
+												<li><a href="products.html?trait=calcium">Calcium channel blocker group</a></li>
 
 											</ul>
 										</div>
@@ -118,19 +134,20 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 									<div class="col1">
 										<div class="h_nav">
 											<ul>
-												<li><a href="products.html">Ace inhibitor group</a></li>
+												<li><a href="products.html?trait=ace">Ace inhibitor group</a></li>
 											</ul>
 										</div>
 									</div>
 								</div>
 							</div>
 						</li>
-						<li><a class="color8" href="index.html">YOUR ORDER</a></li>
+						<li><a class="color8" href="checkout.html">YOUR ORDER</a></li>
+						<li><a class="color6" href="contact.html">WISHLIST</a></li>
+						<li><a class="color6" href="contact.html">MY ACCOUNT</a></li>
 						<li><a class="color4" href="login.html">Login</a></li>
 						<li><a class="color6" href="contact.html">Contact</a></li>
 					</ul>
 				</div>
-
 				<div class="clearfix"> </div>
 			</div>
 		</div>
@@ -365,40 +382,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			</p>
 		</div>
 	</div>
+	<script type="module" src="js/index_page/index.js"></script>
 
 </body>
-<script>
-	$(document).ready(function () {
-		let host = hostName + '/drugs/get-top-four-new-drugs';
-		$.ajax({
-			type: "post",
-			url: host,
-			// data: "data",
-			// dataType: "dataType",
-			success: function (data) {
-				console.log(data);
-				let html = '';
-				data.forEach(element => {
-					html +=
-						'<div class="col-md-3 grid-top simpleCart_shelfItem">\
-							<a href="single.html" class="b-link-stripe b-animate-go  thickbox"><img class="img-responsive"\
-								src="' + hostImage + element.HinhAnh + '" style="height: 250px; object-fit: cover;" alt="">\
-								<div class="b-wrapper">\
-									<h3 class="b-animate b-from-left b-delay03 ">\
-										<span>' + element.TenThuoc +'</span>\
-									</h3>\
-								</div>\
-							</a>\
-							<p><a href="single.html">' + element.TenThuoc + '</a></p>\
-							<a href="#" class="item_add">\
-								<p class="number item_price"><i> </i>' + toVND(element.GiaBan) + '</p>\
-							</a>\
-						</div>';
-				});
-				$('.new-product').html(html);
-			}
-		});
-	});
-</script>
 
 </html>

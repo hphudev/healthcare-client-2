@@ -33,7 +33,7 @@ export async function getDistrict(provinceID, dom_select_district) {
   });
 }
 
-export async function getAward(districtID, dom_select_award) {
+export async function getWard(districtID, dom_select_award) {
   $.ajax({
     type: "get",
     url: host + award + districtID,
