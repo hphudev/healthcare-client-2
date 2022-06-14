@@ -1,4 +1,4 @@
-export const serveName = 'https://1233-14-169-11-68.ap.ngrok.io';
+export const serveName = 'https://f2fd-14-169-11-68.ap.ngrok.io';
 export const api = serveName + '/public/api/';
 // var hostName = 'https://localhost' + '/public/api';
 // var hostImage = 'https://localhost' + '/public/upload/'
