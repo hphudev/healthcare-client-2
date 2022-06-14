@@ -5,7 +5,7 @@ export const api = serveName + '/public/api/';
 export const image_api = serveName + '/public/upload/'
 
 export function toVND(value) {
-  return value.toLocaleString('it-IT', {style : 'currency', currency : 'VND'});
+  return value.toLocaleString('it-IT', {style : 'currency', currency : 'vnd'});
 }
 
 export function convertAPI(request_link) {

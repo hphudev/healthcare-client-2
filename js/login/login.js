@@ -27,7 +27,9 @@ async function login() {
     password: password
   });
   let data = response.data
+  console.log(data)
   if (data != null) {
+    sessionStorage.setItem('user', JSON.stringify(data))
     showToastSuccess("Signed in successfully")
   }
   else {

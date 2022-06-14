@@ -31,26 +31,41 @@ async function getProductsFromServer() {
     console.log(data);
     let html = "";
     data.forEach(element => {
-      html +=
-        '<div class="col-md-6 bottom-cd simpleCart_shelfItem">\
-          <div class="product-at ">\
-            <a href="single.html?id=' + element.id + '"><img class="img-responsive" style="height: 348.5px; object-fit: cover;" src="' + host.convertImageAPI(element.HinhAnh) + '" alt="">\
-              <div class="pro-grid">\
-                <span class="buy-in" style="background-color: black; text-transform: none">More info</span>\
-              </div>\
-            </a>\
-          </div>\
-          <p class="tun"><span>' + element.TenThuoc + '</span><br>' + element.TenNhomThuoc + '</p>\
-          <div class="ca-rt">\
-            <a href="single.html?id=' + element.id + '" class="item_add" onclick="event.preventDefault();">\
-              <p class="number item_price"><i> </i>' + host.toVND(element.GiaBan) + '</p>\
-            </a>\
-          </div>\
-          <div class="clearfix"></div>\
-        </div>'
+      // html +=
+      //   '<div class="col-md-6 bottom-cd simpleCart_shelfItem">\
+      //     <div class="product-at">\
+      //       <a href="single.html?id=' + element.id + '"><img class="img-responsive" style="height: 348.5px; object-fit: cover;" src="' + host.convertImageAPI(element.HinhAnh) + '" alt="">\
+      //         <div class="pro-grid">\
+      //           <span class="buy-in" style="background-color: black; text-transform: none">More info</span>\
+      //         </div>\
+      //       </a>\
+      //     </div>\
+      //     <p class="tun"><span>' + element.TenThuoc + '</span><br>' + element.TenNhomThuoc + '</p>\
+      //     <div class="ca-rt">\
+      //       <a href="single.html?id=' + element.id + '" class="item_add" onclick="event.preventDefault();">\
+      //         <p class="number item_price"><i> </i>' + host.toVND(element.GiaBan) + '</p>\
+      //       </a>\
+      //     </div>\
+      //   </div>'
+      html += `	<div class="col-md-6 bottom-cd simpleCart_shelfItem">
+                  <div class="product-at ">
+                    <a href="single.html?id=${element.id}"><img style="height: 348.5px;" class="img-responsive" src="${host.convertImageAPI(element.HinhAnh)}" alt="">
+                      <div class="pro-grid">
+                        <span class="buy-in" style="background-color: black; text-transform: none">Buy Now</span>
+                      </div>
+                    </a>
+                  </div>
+                  <p class="tun"><span>anh, yêu, em - sdas -dasd</span><br>CLARISSA</p>
+                  <div class="ca-rt">
+                    <a href="#" class="item_add">
+                      <p class="number item_price"><i> </i>$500.00</p>
+                    </a>
+                  </div>
+                  <div class="clearfix"></div>
+                </div>`
     });
     if (html != "")
-      bottom_product[0].innerHTML = html
+      bottom_product[0].innerHTML = html + '<div class="clearfix"> </div>'
     else
       bottom_product[0].innerHTML = '<h2>No results.</h2>'
   }
@@ -72,5 +87,5 @@ window.addEventListener('load', () => {
 // Sự kiện tìm kiếm
 form_search.addEventListener('submit', (event) => {
   event.preventDefault()
-  window.location.href = 'products.html?search=' + search.value 
+  window.location.href = 'products.html?search=' + search.value
 })
