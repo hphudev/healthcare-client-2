@@ -1,6 +1,6 @@
 // Plugin
 import * as host from "../config/host.js"
-import { } from '../plugin/sweet_alert.js'
+import { closeSwal, showLoading } from '../plugin/sweet_alert.js'
 
 // Khai báo
 var data = {}
@@ -33,6 +33,7 @@ async function getDrugFromSever() {
 
 // Sự kiện window load
 window.addEventListener('load', async () => {
+  showLoading('Data Center', 'Loading item...')
   await getDrugFromSever()
   console.log(data)
   img_product_detail.setAttribute('src', host.convertImageAPI(data.drug_info.HinhAnh))
@@ -51,4 +52,5 @@ window.addEventListener('load', async () => {
       html += `<option value="${i}">${i}</option>`
     select_number_of_drugs.innerHTML = html
   }
+  closeSwal()
 })
