@@ -10,7 +10,7 @@ var search = document.getElementById('search')
 // Lấy các params trên url
 function getUrlParameters() {
   const queryString = window.location.search;
-  console.log(queryString);
+  // console.log(queryString);
   let urlParams = new URLSearchParams(queryString);
   return urlParams;
 }
@@ -34,7 +34,7 @@ async function getProductsFromServer() {
       html +=
         '<div class="col-md-6 bottom-cd simpleCart_shelfItem">\
           <div class="product-at ">\
-            <a href="single.html"><img class="img-responsive" style="height: 348.5px; object-fit: cover;" src="' + host.convertImageAPI(element.HinhAnh) + '" alt="">\
+            <a href="single.html?id=' + element.id + '"><img class="img-responsive" style="height: 348.5px; object-fit: cover;" src="' + host.convertImageAPI(element.HinhAnh) + '" alt="">\
               <div class="pro-grid">\
                 <span class="buy-in" style="background-color: black; text-transform: none">More info</span>\
               </div>\
@@ -42,7 +42,7 @@ async function getProductsFromServer() {
           </div>\
           <p class="tun"><span>' + element.TenThuoc + '</span><br>' + element.TenNhomThuoc + '</p>\
           <div class="ca-rt">\
-            <a href="" class="item_add" onclick="event.preventDefault();">\
+            <a href="single.html?id=' + element.id + '" class="item_add" onclick="event.preventDefault();">\
               <p class="number item_price"><i> </i>' + host.toVND(element.GiaBan) + '</p>\
             </a>\
           </div>\
@@ -50,7 +50,9 @@ async function getProductsFromServer() {
         </div>'
     });
     if (html != "")
-      bottom_product[0].innerHTML = html;
+      bottom_product[0].innerHTML = html
+    else
+      bottom_product[0].innerHTML = '<h2>No results.</h2>'
   }
   else {
     showError('Warning', 'Please check you Internet')
