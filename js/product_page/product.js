@@ -47,6 +47,7 @@ async function getProductsFromServer() {
       //       </a>\
       //     </div>\
       //   </div>'
+      let name = element.TenThuoc
       html += `	<div class="col-md-6 bottom-cd simpleCart_shelfItem">
                   <div class="product-at ">
                     <a href="single.html?id=${element.id}"><img style="height: 348.5px;" class="img-responsive" src="${host.convertImageAPI(element.HinhAnh)}" alt="">
@@ -55,12 +56,15 @@ async function getProductsFromServer() {
                       </div>
                     </a>
                   </div>
-                  <p class="tun"><span>anh, yêu, em - sdas -dasd</span><br>CLARISSA</p>
-                  <div class="ca-rt">
-                    <a href="#" class="item_add">
-                      <p class="number item_price"><i> </i>$500.00</p>
-                    </a>
+                  <div class="tun" style="display:flex; flex-direction: row; flex-wrap: nowrap; justify-content:space-around; align-content:flex-start">
+                    <div><b>${element.TenThuoc}</b> <br> ${element.TenNhomThuoc}</div>
+                    <div>
+                      <a href="#" class="item_add">
+                        <p class="number item_price"><i>  </i>${host.toVND(element.GiaBan)}</p>
+                      </a>
+                    </div>
                   </div>
+                  <hr>
                   <div class="clearfix"></div>
                 </div>`
     });
