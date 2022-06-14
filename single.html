@@ -252,7 +252,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 						<div class="flexslider">
 							<ul class="slides">
 								<li id="thumb-image" data-thumb="https://tinyurl.com/3zmrrrpt">
-									<div class="thumb-image"> <img id="img-product-detail" src="https://tinyurl.com/3zmrrrpt" data-imagezoom="true" class="img-responsive">
+									<div class="thumb-image"> <img id="img-product-detail" src="https://tinyurl.com/3zmrrrpt"
+											data-imagezoom="true" class="img-responsive">
 									</div>
 								</li>
 								<!-- <li data-thumb="images/si1.jpg">
@@ -315,7 +316,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 									<li class="size-in" style="min-width: 290px">Number
 										<select id="select-number-of-drugs">
 											<option value="0">0</option>
-										</select></li>
+										</select>
+									</li>
 									<div class="clearfix"> </div>
 								</ul>
 							</div>
@@ -499,6 +501,36 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		</div>
 	</div>
 	<script type="module" src="js/single_page/single.js"></script>
+	<!-- Messenger Plugin chat Code -->
+	<div id="fb-root"></div>
+
+	<!-- Your Plugin chat code -->
+	<div id="fb-customer-chat" class="fb-customerchat">
+	</div>
+
+	<script>
+		var chatbox = document.getElementById('fb-customer-chat');
+		chatbox.setAttribute("page_id", "106265118536011");
+		chatbox.setAttribute("attribution", "biz_inbox");
+	</script>
+
+	<!-- Your SDK code -->
+	<script>
+		window.fbAsyncInit = function () {
+			FB.init({
+				xfbml: true,
+				version: 'v14.0'
+			});
+		};
+
+		(function (d, s, id) {
+			var js, fjs = d.getElementsByTagName(s)[0];
+			if (d.getElementById(id)) return;
+			js = d.createElement(s); js.id = id;
+			js.src = 'https://connect.facebook.net/vi_VN/sdk/xfbml.customerchat.js';
+			fjs.parentNode.insertBefore(js, fjs);
+		}(document, 'script', 'facebook-jssdk'));
+	</script>
 </body>
 
 </html>
