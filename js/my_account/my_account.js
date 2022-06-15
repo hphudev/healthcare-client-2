@@ -1,8 +1,9 @@
 // plugin
 import * as vnappmob from '../plugin/vnappmob.js'
 import * as host from '../config/host.js'
-import { showLoading, showSuccess, showWarning } from '../plugin/sweet_alert.js'
+import { showConfirm, showLoading, showSuccess, showWarning } from '../plugin/sweet_alert.js'
 // Khai báo
+var user = JSON.parse(sessionStorage.getItem('user'))
 var select_province = document.getElementById('select-province')
 var select_district = document.getElementById('select-district')
 var select_ward = document.getElementById('select-ward')
@@ -33,7 +34,8 @@ form_register.addEventListener('submit', async (event) => {
     showWarning('Warning', 'Password and Confirm password field are not the same')
   }
   showLoading('Security Center', 'Checking your information...')
-  const response = await axios.post(host.convertAPI('user/register-account'), {
+  const response = await axios.post(host.convertAPI('user/update-user'), {
+    id: user.id,
     first_name: input_first_name.value,
     last_name: input_last_name.value,
     email: input_email.value,
@@ -43,28 +45,57 @@ form_register.addEventListener('submit', async (event) => {
     detail_address: input_detail_address.value,
     password: input_password.value
   })
+  console.log(response)
   if (response.data != 'error') {
-    showSuccess('Success', 'Sign up successfully')
+    showSuccess('Success', 'Your information is updated successfully')
+    console.log(response.data)
     sessionStorage.setItem('user', JSON.stringify(response.data))
     setTimeout(() => {
       window.location.reload()
-    }, 1500)
+    }, 1500);
   }
   else {
     showWarning('Warning', 'Your email is exist in system')
   }
 })
 
+// 
 // Chuyển hướng khi chưa đăng nhập
 function direction() {
   if (sessionStorage.getItem('user') === null) {
-    document.getElementById('li-login').style.visibility = "visible";
+    window.location.href = '/login.html?direction=order.html';
   }
   else {
-    window.location.href = 'index.html'
+    document.getElementById('li-logout').style.visibility = "visible"
   }
 }
 
 window.addEventListener('load', () => {
   direction()
+  input_first_name.value = user.first_name
+  input_last_name.value = user.last_name
+  input_email.value = user.email
+  input_detail_address.value = user.detail_address
+  input_password.value = user.password
+  input_confirm_password.value = user.password
+  vnappmob.getProvince(select_province, user.province, (result) => {
+    select_province.value = user.province
+  })
+  vnappmob.getDistrict(user.province, select_district, user.district, (result) => {
+    select_district.value = user.district
+  })
+  vnappmob.getWard(user.district, select_ward, user.ward, (result) => {
+    select_ward.value = user.ward
+  })
+})
+
+// logout
+document.getElementById('li-logout').addEventListener('click', (event)=>{
+  event.preventDefault()
+  showConfirm('You want to sign out?', 'Press confirm to sign out', (result) => {
+    if (result === true) {
+      sessionStorage.removeItem('user')
+      window.location.reload()
+    }
+  })
 })
