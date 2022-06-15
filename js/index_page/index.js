@@ -1,14 +1,36 @@
 // plugin
 import * as host from '../config/host.js'
-import { showWarning } from '../plugin/sweet_alert.js'
+import { closeSwal, showConfirm, showWarning } from '../plugin/sweet_alert.js'
 
 // Khai báo
 var new_product = document.getElementsByClassName('new-product')
 var form_search = document.getElementById('form-search')
 var search = document.getElementById('search')
 
+// Ẩn hiện nút login, logout
+function direction() {
+  if(sessionStorage.getItem('user') === null){
+    document.getElementById('li-login').style.visibility = "visible";
+  }
+  else {
+    document.getElementById('li-logout').style.visibility = "visible";
+  }
+}
+
+// logout
+document.getElementById('li-logout').addEventListener('click', (event)=>{
+  event.preventDefault()
+  showConfirm('You want to sign out?', 'Press confirm to sign out', (result) => {
+    if (result === true) {
+      sessionStorage.removeItem('user')
+      window.location.reload()
+    }
+  })
+})
+
 // Sự kiện tải trang
 window.addEventListener('load', async () => {
+  direction()
   const response = await axios.post(host.convertAPI('drugs/get-top-four-new-drugs'));
   console.log(response);
   if (response.status != 200) {

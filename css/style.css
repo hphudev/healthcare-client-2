@@ -282,7 +282,7 @@ i.inst:hover{
 /*--banner--*/
 /*-- agileits --*/
 .banner{
-	background: url('https://tinyurl.com/ycytjh5z') no-repeat ;
+	background: url('../images/logo_bg.jpg') no-repeat ;
 	background-size: cover;
 	width:100%;
 	min-height: 560px;

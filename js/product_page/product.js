@@ -1,6 +1,6 @@
 // Plugin
 import * as host from '../config/host.js'
-import { closeSwal, showError, showLoading, showSuccess } from '../plugin/sweet_alert.js'
+import { closeSwal, showConfirm, showError, showLoading, showSuccess } from '../plugin/sweet_alert.js'
 
 // Khai báo
 var bottom_product = document.getElementsByClassName('bottom-product');
@@ -63,8 +63,18 @@ async function getProductsFromServer() {
 
 }
 
+function direction() {
+  if (sessionStorage.getItem('user') === null) {
+    document.getElementById('li-login').style.visibility = "visible";
+  }
+  else {
+    document.getElementById('li-logout').style.visibility = "visible";
+  }
+}
+
 // Sự kiện window load
 window.addEventListener('load', () => {
+  direction()
   setInterval(async () => {
     getProductsFromServer();
   }, 5000);
@@ -76,4 +86,15 @@ window.addEventListener('load', () => {
 form_search.addEventListener('submit', (event) => {
   event.preventDefault()
   window.location.href = 'products.html?search=' + search.value
+})
+
+// logout
+document.getElementById('li-logout').addEventListener('click', (event)=>{
+  event.preventDefault()
+  showConfirm('You want to sign out?', 'Press confirm to sign out', (result) => {
+    if (result === true) {
+      sessionStorage.removeItem('user')
+      window.location.reload()
+    }
+  })
 })

@@ -29,7 +29,7 @@ select_district.addEventListener('change', () => {
 // Sự kiện đăng ký
 form_register.addEventListener('submit', async (event) => {
   event.preventDefault()
-  if (input_password.value != input_confirm_password.value){
+  if (input_password.value != input_confirm_password.value) {
     showWarning('Warning', 'Password and Confirm password field are not the same')
   }
   showLoading('Security Center', 'Checking your information...')
@@ -50,4 +50,16 @@ form_register.addEventListener('submit', async (event) => {
   else {
     showWarning('Warning', 'Your email is exist in system')
   }
+})
+
+// 
+// Chuyển hướng khi chưa đăng nhập
+function direction() {
+  if (sessionStorage.getItem('user') === null) {
+    document.getElementById('li-login').style.visibility = "visible";
+  }
+}
+
+window.addEventListener('load', () => {
+  direction()
 })

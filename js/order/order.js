@@ -1,6 +1,6 @@
 // Plugin
 import * as host from '../config/host.js'
-import { closeSwal, showLoading } from '../plugin/sweet_alert.js'
+import { closeSwal, showConfirm, showLoading } from '../plugin/sweet_alert.js'
 import { getDistrict, getProvince, getWard } from '../plugin/vnappmob.js'
 // Khai báo
 var user = JSON.parse(sessionStorage.getItem('user'))
@@ -42,12 +42,25 @@ function convertState(state) {
   }
 }
 
+// Chuyển hướng khi chưa đăng nhập
+function direction() {
+  if (sessionStorage.getItem('user') === null)
+    window.location.href = '/login.html?direction=order.html';
+  if (sessionStorage.getItem('user') === null) {
+    document.getElementById('li-login').style.visibility = "visible";
+  }
+  else {
+    document.getElementById('li-logout').style.visibility = "visible";
+  }
+}
+
 // Kiểm tra cho phép hủy đơn hàng
 function checkCancelOrder(state) {
   return (state === "Đang chờ") ? true : false
 }
 // Sự kiện tải trang
 window.addEventListener('load', async () => {
+  direction()
   showLoading('Data Center', 'Loading your orders...')
   sp_name.innerHTML = user.first_name + ' ' + user.last_name
   sp_email.innerHTML = user.email
@@ -119,4 +132,15 @@ window.addEventListener('load', async () => {
 form_search.addEventListener('submit', (event) => {
   event.preventDefault()
   window.location.href = 'products.html?search=' + search.value
+})
+
+// logout
+document.getElementById('li-logout').addEventListener('click', (event)=>{
+  event.preventDefault()
+  showConfirm('You want to sign out?', 'Press confirm to sign out', (result) => {
+    if (result === true) {
+      sessionStorage.removeItem('user')
+      window.location.reload()
+    }
+  })
 })

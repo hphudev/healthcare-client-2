@@ -41,8 +41,21 @@ async function getTransportUnitFromServer() {
   }
 }
 
+// Chuyển hướng khi chưa đăng nhập
+function direction() {
+  if (sessionStorage.getItem('user') === null)
+    window.location.href = '/login.html?direction=checkout.html';
+  if (sessionStorage.getItem('user') === null) {
+    document.getElementById('li-login').style.visibility = "visible";
+  }
+  else {
+    document.getElementById('li-logout').style.visibility = "visible";
+  }
+}
+
 // Sự kiện windowloaded
 window.addEventListener('load', async () => {
+  direction()
   showLoading('Data Center', 'Loading checkout...')
   await getCartFromServer()
   if (cart.length <= 0) {
@@ -99,7 +112,7 @@ window.addEventListener('load', async () => {
 // Sự kiện đặt hàng
 purchase_order.addEventListener('click', async (event) => {
   event.preventDefault()
-  showConfirm('Continue to purchase order?', 'Press Confirm to continue', async function(isConfirmed) {
+  showConfirm('Continue to purchase order?', 'Press Confirm to continue', async function (isConfirmed) {
     if (isConfirmed == false)
       return;
     showLoading('Data Center', 'Purchasing...')
@@ -133,6 +146,16 @@ form_search.addEventListener('submit', (event) => {
   window.location.href = 'products.html?search=' + search.value
 })
 
+// logout
+document.getElementById('li-logout').addEventListener('click', (event)=>{
+  event.preventDefault()
+  showConfirm('You want to sign out?', 'Press confirm to sign out', (result) => {
+    if (result === true) {
+      sessionStorage.removeItem('user')
+      window.location.reload()
+    }
+  })
+})
 
 
 

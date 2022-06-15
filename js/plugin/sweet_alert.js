@@ -55,6 +55,18 @@ export function showError(title, text) {
   })
 }
 
+export function showInfo(title, text, callback = null) {
+  Swal.fire({
+    icon: 'info',
+    title: title,
+    text: text
+  })
+  .then((result)=>{
+    if (callback != null)
+      callback(result)
+  })
+}
+
 export function showInputText(title, inputLabel, inputPlaceholder, callback) {
   Swal.fire({
     title: title,

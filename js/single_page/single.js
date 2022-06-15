@@ -85,6 +85,7 @@ async function getProductsFromServer() {
 // Sự kiện thêm vào giò hàng
 a_add_to_cart.addEventListener('click', async (event) => {
   event.preventDefault()
+  directionLogin()
   showLoading("Data Center", "Adding item in your cart...")
   const response = await axios.post(host.convertAPI('cart/add-item-to-cart'), {
     user_id: user.id,
@@ -97,6 +98,7 @@ a_add_to_cart.addEventListener('click', async (event) => {
 
 // Sự kiện window load
 window.addEventListener('load', async () => {
+  direction()
   showLoading('Data Center', 'Loading item...')
   await getDrugFromSever()
   console.log(data)
@@ -124,8 +126,35 @@ window.addEventListener('load', async () => {
   closeSwal()
 })
 
+function direction() {
+  if (sessionStorage.getItem('user') === null) {
+    document.getElementById('li-login').style.visibility = "visible";
+  }
+  else {
+    document.getElementById('li-logout').style.visibility = "visible";
+  }
+}
+
+// Chuyển hướng khi chưa đăng nhập
+function directionLogin() {
+  const urlParams = getUrlParameters()
+  if (sessionStorage.getItem('user') === null)
+    window.location.href = `/login.html?direction=single.html?id=${urlParams.get('id')}`;
+}
+
 // Sự kiện tìm kiếm
 form_search.addEventListener('submit', (event) => {
   event.preventDefault()
   window.location.href = 'products.html?search=' + search.value
+})
+
+// logout
+document.getElementById('li-logout').addEventListener('click', (event)=>{
+  event.preventDefault()
+  showConfirm('You want to sign out?', 'Press confirm to sign out', (result) => {
+    if (result === true) {
+      sessionStorage.removeItem('user')
+      window.location.reload()
+    }
+  })
 })
