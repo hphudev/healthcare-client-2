@@ -2,7 +2,7 @@ select {
   height: 50px;
   margin: 15px;
 }
-input[type=text], input[type=password], select{
+input[type=text], input[type=password], select, textarea{
   width:100%;
   border:2px solid #aaa;
   border-radius:4px;
@@ -13,7 +13,7 @@ input[type=text], input[type=password], select{
   transition:.3s;
 }
 
-input[type=text]:focus, input[type=password]:focus, select:focus{
+input[type=text]:focus, input[type=password]:focus, select:focus, textarea:focus{
   border-color:dodgerBlue;
   box-shadow:0 0 8px 0 dodgerBlue;
 }

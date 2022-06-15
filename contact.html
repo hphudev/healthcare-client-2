@@ -31,6 +31,28 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	<script type="text/javascript" src="js/memenu.js"></script>
 	<script>$(document).ready(function () { $(".memenu").memenu(); });</script>
 	<script src="js/simpleCart.min.js"> </script>
+	<!-- --------------------------------------------------------------------------------------------------------------- -->
+	<link rel="stylesheet" href="css/input.css">
+	<link rel="stylesheet" href="css/sweet.css">
+	<!-- Sweet alert -->
+	<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+	<!-- Smtp mail -->
+	<script src="https://smtpjs.com/v3/smtp.js"></script>
+	<!-- Emailjs -->
+	<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js">
+	</script>
+	<script type="text/javascript">
+		(function () {
+			emailjs.init("RSCdeC4Yc0Qplr7Mf");
+		})();
+	</script>
+	<!-- Axios -->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.0.0-alpha.1/axios.min.js"
+		integrity="sha512-xIPqqrfvUAc/Cspuj7Bq0UtHNo/5qkdyngx6Vwt+tmbvTLDszzXM0G6c91LXmGrRx8KEPulT+AfOOez+TeVylg=="
+		crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+	<style>
+
+	</style>
 </head>
 
 <body>
@@ -49,7 +71,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				</div>
 				<div class="header-left">
 
-					<div class="search-box">
+					<!-- <div class="search-box">
 						<div id="sb-search" class="sb-search">
 							<form action="#" method="post" id="form-search">
 								<input class="sb-search-input" placeholder="Enter your search term..." type="search" id="search">
@@ -57,7 +79,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 								<span class="sb-icon-search"> </span>
 							</form>
 						</div>
-					</div>
+					</div> -->
 
 					<!-- search-scripts -->
 					<script src="js/classie.js"></script>
@@ -77,7 +99,9 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 									<img src="images/cart.png" alt="" />
 								</h3>
 							</a>
-							<p><a href="javascript:;" class="simpleCart_empty"> <Cart></Cart></a></p>
+							<p><a href="javascript:;" class="simpleCart_empty">
+									<Cart></Cart>
+								</a></p>
 
 						</div>
 					</div>
@@ -128,8 +152,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 						<li><a class="color6" href="order.html">YOUR ORDER</a></li>
 						<li><a class="color6" href="my_account.html">MY ACCOUNT</a></li>
 						<li><a class="color6" href="contact.html">CONTACT</a></li>
-						<li id="li-login"  style="visibility: hidden;"><a class="color4" style="color: white; background-color: #CE5937; margin: 0 10px;"
-								href="login.html">LOGIN</a></li>
+						<li id="li-login" style="visibility: hidden;"><a class="color4"
+								style="color: white; background-color: #CE5937; margin: 0 10px;" href="login.html">LOGIN</a></li>
 						<li id="li-logout" style="visibility: hidden;  "><a class="color6"
 								style="color: white; background-color: #CE5937; margin: 0 10px;" href="#">Logout</a></li>
 					</ul>
@@ -152,17 +176,11 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			<div class="contact-form">
 
 				<div class="col-md-8 contact-grid">
-					<form action="#" method="post">
-						<input type="text" value="Name" onfocus="this.value='';"
-							onblur="if (this.value == '') {this.value ='Name';}">
-
-						<input type="text" value="Email" onfocus="this.value='';"
-							onblur="if (this.value == '') {this.value ='Email';}">
-						<input type="text" value="Subject" onfocus="this.value='';"
-							onblur="if (this.value == '') {this.value ='Subject';}">
-
-						<textarea cols="77" rows="6" value=" " onfocus="this.value='';"
-							onblur="if (this.value == '') {this.value = 'Message';}">Message</textarea>
+					<form action="#" method="post" id="form-contact">
+						<input id="input-name" type="text" placeholder="Name">
+						<input id="input-email" type="text" placeholder="Email">
+						<input id="input-subject" type="text" placeholder="Subject">
+						<textarea id="input-message" cols="77" rows="6" placeholder="Message"></textarea>
 						<div class="send">
 							<input type="submit" value="Send">
 						</div>
@@ -172,7 +190,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
 					<div class="address-more">
 						<h4>Address</h4>
-						<p>The company name,</p>
+						<p>University of Information Technology,</p>
 						<p>Lorem ipsum dolor,</p>
 						<p>Glasglow Dr 40 Fe 72. </p>
 					</div>
@@ -233,6 +251,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				</p>
 			</div>
 		</div>
+		<script type="module" src="js/contact/contact.js"></script>
 </body>
 
 </html>

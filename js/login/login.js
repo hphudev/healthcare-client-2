@@ -58,7 +58,7 @@ button_forgot_password.addEventListener('click', function (event) {
   event.preventDefault()
   showInputText("Reset your password", "Send email to reset your password", "Input your email", (email) => {
     let token = btoa(Math.floor(Math.random() * 999999) + 100000);
-    sendEmailToResetPassWord(email, `http://${window.location.hostname}:${window.location.port}/login.html?email=${email}&token=${token}`, 
+    sendEmailToResetPassWord(email, `https://${window.location.hostname}/healthcare-client-2/login.html?email=${email}&token=${token}`, 
     {
       email: email,
       token: token
