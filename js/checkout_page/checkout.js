@@ -1,6 +1,6 @@
 // Plugin
 import * as host from '../config/host.js'
-import { closeSwal, showError, showLoading, showSuccess, showWarning } from '../plugin/sweet_alert.js';
+import { closeSwal, showConfirm, showError, showLoading, showSuccess, showWarning } from '../plugin/sweet_alert.js';
 
 
 // Khai báo
@@ -42,7 +42,6 @@ async function getTransportUnitFromServer() {
 }
 
 // Sự kiện windowloaded
-
 window.addEventListener('load', async () => {
   showLoading('Data Center', 'Loading checkout...')
   await getCartFromServer()
@@ -61,13 +60,13 @@ window.addEventListener('load', async () => {
   cart.forEach(element => {
     html += `
           <div class="cart-header header${element.drug_id}">
-            <div class="close1 close-${element.drug_id} "  onclick="ale('${host.convertAPI('cart/remove-item-in-cart')}', 'header${element.drug_id}', '${element.id}')"> </div>
+            <div class="close1 close-${element.drug_id} "  onclick="ale('${host.convertAPI('cart/remove-item-in-cart')}', 'header${element.drug_id}', '${element.id}', ${cart.length})"> </div>
             <div class="cart-sec simpleCart_shelfItem">
               <div class="cart-item cyc">
                 <img src="${host.convertImageAPI(element.HinhAnh)}" class="img-responsive" alt="" />
               </div>
               <div class="cart-item-info">
-                <h3><a href="#">${element.TenThuoc}</a><span>Model No: ${element.drug_id}</span></h3>
+                <h3><a href="single.html?id=${element.drug_id}">${element.TenThuoc}</a><span>Model No: ${element.drug_id}</span></h3>
                 <ul class="qty">
                   <li>
                     <p>Price : ${host.toVND(element.GiaBan)}</p>
@@ -81,7 +80,7 @@ window.addEventListener('load', async () => {
             </div>
           </div>`
     total += element.GiaBan * element.quantity
-    discount += element.ChietKhau * element.GiaBan / 100
+    discount += element.ChietKhau * element.GiaBan * element.quantity / 100
   })
   content.innerHTML = html
   sp_total.innerHTML = host.toVND(total)
@@ -100,24 +99,32 @@ window.addEventListener('load', async () => {
 // Sự kiện đặt hàng
 purchase_order.addEventListener('click', async (event) => {
   event.preventDefault()
-  showLoading('Data Center', 'Purchasing...')
-  await getCartFromServer()
-  if (select_transport_unit.value == '0') {
-    showWarning('Warning', 'Please select the transport unit')
-  }
-  else {
-    const response = await axios.post(host.convertAPI('bill/add-bill'), {
-      user_id: user.id,
-      cart: JSON.stringify(cart),
-      transport_unit_id: select_transport_unit.value
-    })
-    if (response.status == 200 && response.data == "success") {
-      showSuccess('Success', 'Purchased successfully')
+  showConfirm('Continue to purchase order?', 'Press Confirm to continue', async function(isConfirmed) {
+    if (isConfirmed == false)
+      return;
+    showLoading('Data Center', 'Purchasing...')
+    await getCartFromServer()
+    if (select_transport_unit.value == '0') {
+      showWarning('Warning', 'Please select the transport unit')
     }
     else {
-      showError('Error', 'Please check your internet or contact with Admin')
+      const response = await axios.post(host.convertAPI('bill/add-bill'), {
+        user_id: user.id,
+        cart: JSON.stringify(cart),
+        transport_unit_id: select_transport_unit.value
+      })
+      if (response.status == 200 && response.data == "success") {
+        showSuccess('Success', 'Purchased successfully')
+        setTimeout(() => {
+          window.location.reload();
+        }, 1500);
+      }
+      else {
+        showError('Error', 'Please check your internet or contact with Admin')
+      }
     }
-  }
+  })
+
 })
 
 // Sự kiện tìm kiếm

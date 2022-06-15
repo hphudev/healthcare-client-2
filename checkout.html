@@ -442,7 +442,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
 	<script type="module" src="js/checkout_page/checkout.js"></script>
 	<script>
-		async function ale(api, nameClass, cartID) {
+		async function ale(api, nameClass, cartID, cartLength) {
 			$.ajax({
 				type: "post",
 				url: api,
@@ -455,6 +455,9 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 						$('.' + nameClass).fadeOut('slow', function (c) {
 							$('.' + nameClass).remove();
 						});
+						setTimeout(() => {
+							window.location.reload()
+						}, 1500);
 					}
 				}
 			});
