@@ -72,6 +72,7 @@ function direction() {
 
 window.addEventListener('load', () => {
   direction()
+  console.log(user)
   input_first_name.value = user.first_name
   input_last_name.value = user.last_name
   input_email.value = user.email
