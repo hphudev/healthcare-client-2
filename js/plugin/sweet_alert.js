@@ -76,6 +76,18 @@ export function showInputText(title, inputLabel, inputPlaceholder, callback) {
       callback(response.value);
   })
 }
+
+export function showConfirm(title, text, callback) {
+  Swal.fire({
+    icon: "question",
+    title: title,
+    text: text,
+    showCancelButton: true,
+    confirmButtonText: "Confirm"
+  }).then((result) => {
+    callback(result.isConfirmed)
+  })
+}
 export function closeSwal() {
   Swal.close();
 }

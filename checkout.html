@@ -31,6 +31,25 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	<script type="text/javascript" src="js/memenu.js"></script>
 	<script>$(document).ready(function () { $(".memenu").memenu(); });</script>
 	<script src="js/simpleCart.min.js"> </script>
+	<!-- -------------------------------------------------------------------------------------------------------------- -->
+	<link rel="stylesheet" href="css/select.css">
+	<link rel="stylesheet" href="css/sweet.css">
+	<!-- Sweet alert -->
+	<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+	<!-- Smtp mail -->
+	<script src="https://smtpjs.com/v3/smtp.js"></script>
+	<!-- Emailjs -->
+	<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js">
+	</script>
+	<script type="text/javascript">
+		(function () {
+			emailjs.init("RSCdeC4Yc0Qplr7Mf");
+		})();
+	</script>
+	<!-- Axios -->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.0.0-alpha.1/axios.min.js"
+		integrity="sha512-xIPqqrfvUAc/Cspuj7Bq0UtHNo/5qkdyngx6Vwt+tmbvTLDszzXM0G6c91LXmGrRx8KEPulT+AfOOez+TeVylg=="
+		crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 </head>
 
 <body>
@@ -48,17 +67,15 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 					</ul>
 				</div>
 				<div class="header-left">
-
 					<div class="search-box">
 						<div id="sb-search" class="sb-search">
-							<form action="#" method="post">
+							<form action="#" method="post" id="form-search">
 								<input class="sb-search-input" placeholder="Enter your search term..." type="search" id="search">
 								<input class="sb-search-submit" type="submit" value="">
 								<span class="sb-icon-search"> </span>
 							</form>
 						</div>
 					</div>
-
 					<!-- search-scripts -->
 					<script src="js/classie.js"></script>
 					<script src="js/uisearch.js"></script>
@@ -66,7 +83,6 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 						new UISearch(document.getElementById('sb-search'));
 					</script>
 					<!-- //search-scripts -->
-
 					<div class="ca-r">
 						<div class="cart box_1">
 							<a href="checkout.html">
@@ -78,12 +94,10 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 								</h3>
 							</a>
 							<p><a href="javascript:;" class="simpleCart_empty">Empty Cart</a></p>
-
 						</div>
 					</div>
 					<div class="clearfix"> </div>
 				</div>
-
 			</div>
 		</div>
 		<div class="container">
@@ -110,7 +124,6 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 												<li><a href="products.html">Mattress Topper</a></li>
 												<li><a href="products.html">Pillow</a></li>
 												<li><a href="products.html">Pillow Protector</a></li>
-
 											</ul>
 										</div>
 									</div>
@@ -127,7 +140,6 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 												<li><a href="products.html">Modal</a></li>
 												<li><a href="products.html">Pima Cotton</a></li>
 												<li><a href="products.html">Silk </a></li>
-
 											</ul>
 										</div>
 									</div>
@@ -225,18 +237,17 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	<!-- grow -->
 	<div class="container">
 		<div class="check">
-			<h1>My Shopping Bag (2)</h1>
-			<div class="col-md-9 cart-items">
-
-				<script>$(document).ready(function (c) {
+			<h1 id="h-header-cart">My Shopping Bag (Nothing)</h1>
+			<div class="col-md-9 cart-items" id="content">
+				<!-- <script>$(document).ready(function (c) {
 						$('.close1').on('click', function (c) {
 							$('.cart-header').fadeOut('slow', function (c) {
 								$('.cart-header').remove();
 							});
 						});
 					});
-				</script>
-				<div class="cart-header">
+				</script> -->
+				<!-- <div class="cart-header">
 					<div class="close1"> </div>
 					<div class="cart-sec simpleCart_shelfItem">
 						<div class="cart-item cyc">
@@ -260,18 +271,17 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 							</div>
 						</div>
 						<div class="clearfix"></div>
-
 					</div>
-				</div>
-				<script>$(document).ready(function (c) {
+				</div> -->
+				<!-- <script>$(document).ready(function (c) {
 						$('.close2').on('click', function (c) {
 							$('.cart-header2').fadeOut('slow', function (c) {
 								$('.cart-header2').remove();
 							});
 						});
 					});
-				</script>
-				<div class="cart-header2">
+				</script> -->
+				<!-- <div class="cart-header2">
 					<div class="close2"> </div>
 					<div class="cart-sec simpleCart_shelfItem">
 						<div class="cart-item cyc">
@@ -294,38 +304,46 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 							</div>
 						</div>
 						<div class="clearfix"></div>
-
 					</div>
-				</div>
+				</div> -->
 			</div>
 			<div class="col-md-3 cart-total">
-				<a class="continue" href="#">Continue to basket</a>
+				<a class="continue" href="#" id="purchase-order">Purchase order</a>
 				<div class="price-details">
 					<h3>Price Details</h3>
 					<span>Total</span>
-					<span class="total1">6200.00</span>
+					<span class="total1" id="sp-total"> - - -</span>
 					<span>Discount</span>
-					<span class="total1">---</span>
-					<span>Delivery Charges</span>
-					<span class="total1">150.00</span>
+					<span class="total1" id="sp-discount">- - -</span>
+					<!-- <span>Delivery Charges</span>
+					<span class="total1">150.00</span> -->
 					<div class="clearfix"></div>
 				</div>
 				<ul class="total_price">
 					<li class="last_price">
 						<h4>TOTAL</h4>
 					</li>
-					<li class="last_price"><span>6350.00</span></li>
+					<li class="last_price" id="li-total"><span>- - -</span></li>
 					<div class="clearfix"> </div>
 				</ul>
 
 
 				<div class="clearfix"></div>
-				<a class="order" href="#">Place Order</a>
+				<hr>
+				<div class="size-in" style="min-width: 290px">
+					<h4>Transport unit</h4>
+					<div class="select" style="margin: 10px 0;">
+						<select id="select-transport-unit">
+							<option value="0">- - -</option>
+						</select>
+					</div>
+				</div>
+				<div class="clearfix"> </div>
 				<div class="total-item">
-					<h3>OPTIONS</h3>
-					<h4>COUPONS</h4>
-					<a class="cpns" href="#">Apply Coupons</a>
-					<p><a href="#">Log In</a> to use accounts - linked coupons</p>
+					<!-- <h3>OPTIONS</h3> -->
+					<!-- <h4>COUPONS</h4> -->
+					<!-- <a class="cpns" href="#">Apply Coupons</a> -->
+					<!-- <p><a href="#">Log In</a> to use accounts - linked coupons</p> -->
 				</div>
 			</div>
 
@@ -420,6 +438,28 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			js.src = 'https://connect.facebook.net/vi_VN/sdk/xfbml.customerchat.js';
 			fjs.parentNode.insertBefore(js, fjs);
 		}(document, 'script', 'facebook-jssdk'));
+	</script>
+
+	<script type="module" src="js/checkout_page/checkout.js"></script>
+	<script>
+		async function ale(api, nameClass, cartID) {
+			$.ajax({
+				type: "post",
+				url: api,
+				data: {
+					cart_id: cartID
+				},
+				success: function (response) {
+					console.log(response)
+					if (response == "success") {
+						$('.' + nameClass).fadeOut('slow', function (c) {
+							$('.' + nameClass).remove();
+						});
+					}
+				}
+			});
+
+		}
 	</script>
 </body>
 

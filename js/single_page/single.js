@@ -14,6 +14,7 @@ var select_number_of_drugs = document.getElementById('select-number-of-drugs')
 var a_add_to_cart = document.getElementById('a-add-to-cart')
 var user = JSON.parse(sessionStorage.getItem('user'))
 var bottom_product = document.getElementsByClassName('bottom-product');
+var form_search = document.getElementById('form-search')
 
 // Lấy id từ parameters
 function getUrlParameters() {
@@ -119,8 +120,12 @@ window.addEventListener('load', async () => {
       html += `<option value="${i}">${i}</option>`
     select_number_of_drugs.innerHTML = html
   }
-
   await getProductsFromServer();
-
   closeSwal()
+})
+
+// Sự kiện tìm kiếm
+form_search.addEventListener('submit', (event) => {
+  event.preventDefault()
+  window.location.href = 'products.html?search=' + search.value
 })
