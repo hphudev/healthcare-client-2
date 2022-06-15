@@ -63,7 +63,7 @@ form_register.addEventListener('submit', async (event) => {
 // Chuyển hướng khi chưa đăng nhập
 function direction() {
   if (sessionStorage.getItem('user') === null) {
-    window.location.href = '/login.html?direction=order.html';
+    window.location.href = 'login.html?direction=order.html';
   }
   else {
     document.getElementById('li-logout').style.visibility = "visible"

@@ -19,7 +19,7 @@ function direction() {
     window.location.href = address
   }
   else {
-    window.location.href = '/index.html';
+    window.location.href = 'index.html';
   }
 }
 // Sự kiện đăng nhập 
@@ -106,7 +106,7 @@ async function loginByToken(email, token) {
         email: email,
         token: null
       })
-      window.location.href = '/my_account.html'
+      window.location.href = 'my_account.html'
     })
   }
   else {

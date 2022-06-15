@@ -139,7 +139,7 @@ function direction() {
 function directionLogin() {
   const urlParams = getUrlParameters()
   if (sessionStorage.getItem('user') === null)
-    window.location.href = `/login.html?direction=single.html?id=${urlParams.get('id')}`;
+    window.location.href = `login.html?direction=single.html?id=${urlParams.get('id')}`;
 }
 
 // Sự kiện tìm kiếm

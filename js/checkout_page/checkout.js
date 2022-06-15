@@ -44,7 +44,7 @@ async function getTransportUnitFromServer() {
 // Chuyển hướng khi chưa đăng nhập
 function direction() {
   if (sessionStorage.getItem('user') === null)
-    window.location.href = '/login.html?direction=checkout.html';
+    window.location.href = 'login.html?direction=checkout.html';
   if (sessionStorage.getItem('user') === null) {
     document.getElementById('li-login').style.visibility = "visible";
   }
