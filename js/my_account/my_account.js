@@ -32,6 +32,7 @@ form_register.addEventListener('submit', async (event) => {
   event.preventDefault()
   if (input_password.value != input_confirm_password.value) {
     showWarning('Warning', 'Password and Confirm password field are not the same')
+    return
   }
   showLoading('Security Center', 'Checking your information...')
   const response = await axios.post(host.convertAPI('user/update-user'), {
