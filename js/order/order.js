@@ -10,6 +10,7 @@ var h_header_cart = document.getElementById('h-header-cart')
 var sp_name = document.getElementById('sp-name')
 var sp_email = document.getElementById('sp-email')
 var li_address = document.getElementById('li-address')
+var form_search = document.getElementById('form-search')
 
 // Hàm lấy đơn hàng từ server
 async function getBillFromServer() {
@@ -112,4 +113,10 @@ window.addEventListener('load', async () => {
   });
   content.innerHTML = html_result;
   closeSwal()
+})
+
+// Sự kiện tìm kiếm
+form_search.addEventListener('submit', (event) => {
+  event.preventDefault()
+  window.location.href = 'products.html?search=' + search.value
 })
