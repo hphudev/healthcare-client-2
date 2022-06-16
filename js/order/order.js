@@ -58,26 +58,9 @@ function direction() {
 function checkCancelOrder(state) {
   return (state === "Đang chờ") ? true : false
 }
-// Sự kiện tải trang
-window.addEventListener('load', async () => {
-  direction()
-  showLoading('Data Center', 'Loading your orders...')
-  sp_name.innerHTML = user.first_name + ' ' + user.last_name
-  sp_email.innerHTML = user.email
-  let ward = ''
-  let province = ''
-  let district = ''
-  getProvince(null, user.province, (result) => {
-    province = result
-    getDistrict(user.province, null, user.district, (result) => {
-      district = result
-      getWard(user.district, null, user.ward, (result) => {
-        ward = result
-        li_address.innerHTML = `${user.detail_address}, ${ward}, ${district}, ${province}`
-      })
-    })
-  })
 
+// Render giao diện orders
+async function renderOrders() {
   await getBillFromServer()
   h_header_cart.innerHTML = `My Orders (${orders.length})`
   let html = ''
@@ -117,15 +100,40 @@ window.addEventListener('load', async () => {
                 <br>
                 💰 Total: ${host.toVND(sum)}
                 <div style="display: flex; justify-content: end" onclick="ale('${host.convertAPI('bill/remove-bill-detailbill-shipping')}', '${order.bill.id}', ${checkCancelOrder(order.bill.TinhTrang)})">
-                  <h5 style="color: ${(checkCancelOrder(order.bill.TinhTrang) == true) ? 'orange' : 'green'}; cursor: ${(checkCancelOrder(order.bill.TinhTrang) == true) ? 'pointer' : 'auto'};">${(checkCancelOrder(order.bill.TinhTrang) == true) ? 'Hủy đơn hàng' : '✔️ Đã tiếp nhận'}</h5>
+                  <h5 style="color: ${(checkCancelOrder(order.bill.TinhTrang) == true) ? 'orange' : 'green'}; cursor: ${(checkCancelOrder(order.bill.TinhTrang) == true) ? 'pointer' : 'auto'};">${(checkCancelOrder(order.bill.TinhTrang) == true) ? 'Hủy đơn hàng' : '✔️ Received'}</h5>
                   <!-- <div id="close" class="close1"></div> -->
                 </div>
                 ${html}
               </div>`
     html_result += html + '<hr>'
   });
-  content.innerHTML = html_result;
+  content.innerHTML = html_result
+}
+
+// Sự kiện tải trang
+window.addEventListener('load', async () => {
+  direction()
+  showLoading('Data Center', 'Loading your orders...')
+  sp_name.innerHTML = user.first_name + ' ' + user.last_name
+  sp_email.innerHTML = user.email
+  let ward = ''
+  let province = ''
+  let district = ''
+  getProvince(null, user.province, (result) => {
+    province = result
+    getDistrict(user.province, null, user.district, (result) => {
+      district = result
+      getWard(user.district, null, user.ward, (result) => {
+        ward = result
+        li_address.innerHTML = `${user.detail_address}, ${ward}, ${district}, ${province}`
+      })
+    })
+  })
+  await renderOrders()
   closeSwal()
+  setInterval(async () => {
+    await renderOrders()
+  }, 5000);
 })
 
 // Sự kiện tìm kiếm
@@ -135,7 +143,7 @@ form_search.addEventListener('submit', (event) => {
 })
 
 // logout
-document.getElementById('li-logout').addEventListener('click', (event)=>{
+document.getElementById('li-logout').addEventListener('click', (event) => {
   event.preventDefault()
   showConfirm('You want to sign out?', 'Press confirm to sign out', (result) => {
     if (result === true) {

@@ -129,7 +129,7 @@ purchase_order.addEventListener('click', async (event) => {
       if (response.status == 200 && response.data == "success") {
         showSuccess('Success', 'Purchased successfully')
         setTimeout(() => {
-          window.location.reload();
+          window.location.href = 'order.html'
         }, 1500);
       }
       else {
