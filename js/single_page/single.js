@@ -1,6 +1,6 @@
 // Plugin
 import * as host from "../config/host.js"
-import { closeSwal, showLoading, showSuccess } from '../plugin/sweet_alert.js'
+import { closeSwal, showConfirm, showLoading, showSuccess } from '../plugin/sweet_alert.js'
 
 // Khai báo
 var data = {}
