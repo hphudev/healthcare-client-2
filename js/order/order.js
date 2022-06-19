@@ -100,7 +100,7 @@ async function renderOrders() {
                 <br>
                 💰 Total: ${host.toVND(sum)}
                 <div style="display: flex; justify-content: end" onclick="ale('${host.convertAPI('bill/remove-bill-detailbill-shipping')}', '${order.bill.id}', ${checkCancelOrder(order.bill.TinhTrang)})">
-                  <h5 style="color: ${(checkCancelOrder(order.bill.TinhTrang) == true) ? 'orange' : 'green'}; cursor: ${(checkCancelOrder(order.bill.TinhTrang) == true) ? 'pointer' : 'auto'};">${(checkCancelOrder(order.bill.TinhTrang) == true) ? 'Hủy đơn hàng' : '✔️ Received'}</h5>
+                  <h5 style="color: ${(checkCancelOrder(order.bill.TinhTrang) == true) ? 'orange' : 'green'}; cursor: ${(checkCancelOrder(order.bill.TinhTrang) == true) ? 'pointer' : 'auto'};">${(checkCancelOrder(order.bill.TinhTrang) == true) ? 'Cancel order' : '✔️ Received'}</h5>
                   <!-- <div id="close" class="close1"></div> -->
                 </div>
                 ${html}
