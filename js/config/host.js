@@ -1,4 +1,4 @@
-export const serverName = 'https://e34e-2001-ee0-4f0f-3240-e026-2364-f44b-d0ac.ap.ngrok.io';
+export const serverName = 'https://d571-14-169-11-68.ap.ngrok.io';
 export const api = serverName + '/public/api/';
 // var hostName = 'https://localhost' + '/public/api';
 // var hostImage = 'https://localhost' + '/public/upload/'
